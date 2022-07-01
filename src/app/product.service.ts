@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class ProductService {
 
-  _albumUrl: string = '../assets/album.json';
+  _albumUrl = '../assets/album.json';
 
   constructor(private _http: HttpClient) { }
 
