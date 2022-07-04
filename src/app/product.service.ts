@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { tap } from 'rxjs/operators';
+import { AlbumInfo } from "./album-info";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class ProductService {
 
-  _albumUrl = '../assets/album.json';
+  private _albumUrl = '../assets/album.json';
 
   constructor(private _http: HttpClient) { }
 
-  getAlbum(id: number) {
-    return this._http.get(this._albumUrl).pipe(
-      tap(_ => console.log('fetched data'))
+  getAlbum(id: number): Observable<AlbumInfo> {
+    return this._http.get<AlbumInfo>(this._albumUrl).pipe(
+      tap(data => console.log('fetched data: ', data))
     );
   }
 
